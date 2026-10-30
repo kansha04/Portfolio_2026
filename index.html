@@ -1,469 +1,1540 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tinovonga Mushayi, Portfolio</title>
-<style>
-  :root{
-    --paper:#f4f2ee;
-    --card:#ebe8e2;
-    --ink:#121212;
-    --mute:#7a766f;
-    --line:#d9d5cd;
-    --accent:#ff5b1f;
-    --display:"Avenir Next","Avenir","Futura","Helvetica Neue",sans-serif;
-    --body:"Avenir Next","Avenir","Helvetica Neue",sans-serif;
-    --serif:"Iowan Old Style","Didot","Georgia",serif;
-    --mono:"SF Mono","Menlo","Monaco",monospace;
-    --pad:clamp(20px,4.5vw,64px);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;overflow-x:clip}
-  section[id]{scroll-margin-top:76px}
-  body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:64px;overflow-x:clip}
-  img,video{max-width:100%;height:auto}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1320px;margin:0 auto;padding:0 var(--pad)}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tinovonga Mushayi, Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Tinovonga Mushayi, a self-taught software developer in Leuven, Belgium."
+    />
+    <style>
+      :root {
+        --paper: #f4f2ee;
+        --card: #ebe8e2;
+        --ink: #121212;
+        --mute: #7a766f;
+        --line: #d9d5cd;
+        --accent: #ff5b1f;
+        --display:
+          "Avenir Next", "Avenir", "Futura", "Helvetica Neue", sans-serif;
+        --body: "Avenir Next", "Avenir", "Helvetica Neue", sans-serif;
+        --serif: "Iowan Old Style", "Didot", "Georgia", serif;
+        --mono: "SF Mono", "Menlo", "Monaco", monospace;
+        --pad: clamp(20px, 4.5vw, 64px);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        overflow-x: clip;
+      }
+      section[id] {
+        scroll-margin-top: 76px;
+      }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--body);
+        font-size: 17px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        padding-bottom: 64px;
+        overflow-x: clip;
+      }
+      img,
+      video {
+        max-width: 100%;
+        height: auto;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .wrap {
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 0 var(--pad);
+      }
 
-  /* ---------- nav ---------- */
-  header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
-  header.scrolled,header.menu-open{border-color:var(--line)}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:16px}
-  .logo{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.03em;flex-shrink:0}
-  .logo span{color:var(--accent)}
-  .links{display:flex;gap:clamp(20px,2.6vw,34px);align-items:center}
-  .links a{font-size:15px;font-weight:500;display:flex;align-items:baseline;gap:6px;position:relative;white-space:nowrap}
-  .links a sup{font-family:var(--mono);font-size:10px;color:var(--mute)}
-  .links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--ink);transition:width .3s}
-  .links a:hover::after{width:100%}
-  .nav-right{display:flex;align-items:center;gap:10px}
-  .menu-toggle{display:none;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;transition:border-color .25s,background .25s}
-  .menu-toggle:hover{border-color:var(--ink)}
-  .menu-toggle svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round}
-  .menu-toggle .close-ic{display:none}
-  header.menu-open .menu-toggle .open-ic{display:none}
-  header.menu-open .menu-toggle .close-ic{display:block}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--ink);color:var(--paper);padding:13px 22px;border-radius:999px;font-size:15px;font-weight:600;white-space:nowrap;transition:background .25s,transform .25s}
-  .btn:hover{background:var(--accent);transform:translateY(-2px)}
-  .btn .arr{transition:transform .25s}
-  .btn:hover .arr{transform:translateX(3px) rotate(-45deg)}
-  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
-  .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+      /* ---------- nav ---------- */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: color-mix(in srgb, var(--paper) 88%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s;
+      }
+      header.scrolled,
+      header.menu-open {
+        border-color: var(--line);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 76px;
+        gap: 16px;
+      }
+      .logo {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 22px;
+        letter-spacing: -0.03em;
+        flex-shrink: 0;
+      }
+      .logo span {
+        color: var(--accent);
+      }
+      .links {
+        display: flex;
+        gap: clamp(20px, 2.6vw, 34px);
+        align-items: center;
+      }
+      .links a {
+        font-size: 15px;
+        font-weight: 500;
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        position: relative;
+        white-space: nowrap;
+      }
+      .links a sup {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--mute);
+      }
+      .links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        height: 1px;
+        width: 0;
+        background: var(--ink);
+        transition: width 0.3s;
+      }
+      .links a:hover::after {
+        width: 100%;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .menu-toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--ink);
+        cursor: pointer;
+        transition:
+          border-color 0.25s,
+          background 0.25s;
+      }
+      .menu-toggle:hover {
+        border-color: var(--ink);
+      }
+      .menu-toggle svg {
+        width: 18px;
+        height: 18px;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        fill: none;
+        stroke-linecap: round;
+      }
+      .menu-toggle .close-ic {
+        display: none;
+      }
+      header.menu-open .menu-toggle .open-ic {
+        display: none;
+      }
+      header.menu-open .menu-toggle .close-ic {
+        display: block;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: var(--ink);
+        color: var(--paper);
+        padding: 13px 22px;
+        border-radius: 999px;
+        font-size: 15px;
+        font-weight: 600;
+        white-space: nowrap;
+        transition:
+          background 0.25s,
+          transform 0.25s;
+      }
+      .btn:hover {
+        background: var(--accent);
+        transform: translateY(-2px);
+      }
+      .btn .arr {
+        transition: transform 0.25s;
+      }
+      .btn:hover .arr {
+        transform: translateX(3px) rotate(-45deg);
+      }
+      .btn.ghost {
+        background: transparent;
+        color: var(--ink);
+        border: 1px solid var(--ink);
+      }
+      .btn.ghost:hover {
+        background: var(--ink);
+        color: var(--paper);
+      }
 
-  /* ---------- hero ---------- */
-  .hero{padding-block:clamp(44px,10vw,130px) clamp(44px,7vw,90px)}
-  .hello{font-size:clamp(16px,1.4vw,18px);font-weight:500;display:flex;align-items:center;gap:12px;margin-bottom:clamp(20px,3vw,28px)}
-  .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(255,91,31,.5);animation:pulse 2.2s infinite;flex-shrink:0}
-  @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(255,91,31,0)}100%{box-shadow:0 0 0 0 rgba(255,91,31,0)}}
-  h1{font-family:var(--display);font-weight:600;font-size:clamp(36px,7.4vw,112px);line-height:.98;letter-spacing:-.045em;max-width:13.5ch}
-  h1 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--mute);letter-spacing:-.02em}
-  .hero-foot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(28px,4vw,48px);margin-top:clamp(32px,6vw,72px);align-items:end}
-  .hero-foot .meta{display:flex;flex-direction:column;gap:18px;align-items:flex-start}
-  .meta small{font-family:var(--mono);font-size:12px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase}
-  .hero-foot p{color:#3a3834;font-size:clamp(16px,1.3vw,18px);max-width:58ch}
+      /* ---------- hero ---------- */
+      .hero {
+        padding-block: clamp(44px, 10vw, 130px) clamp(44px, 7vw, 90px);
+      }
+      .hello {
+        font-size: clamp(16px, 1.4vw, 18px);
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: clamp(20px, 3vw, 28px);
+      }
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 0 rgba(255, 91, 31, 0.5);
+        animation: pulse 2.2s infinite;
+        flex-shrink: 0;
+      }
+      @keyframes pulse {
+        70% {
+          box-shadow: 0 0 0 10px rgba(255, 91, 31, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(255, 91, 31, 0);
+        }
+      }
+      h1 {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(36px, 7.4vw, 112px);
+        line-height: 0.98;
+        letter-spacing: -0.045em;
+        max-width: 13.5ch;
+      }
+      h1 em {
+        font-family: var(--serif);
+        font-style: italic;
+        font-weight: 400;
+        color: var(--mute);
+        letter-spacing: -0.02em;
+      }
+      .hero-foot {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+        gap: clamp(28px, 4vw, 48px);
+        margin-top: clamp(32px, 6vw, 72px);
+        align-items: end;
+      }
+      .hero-foot .meta {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        align-items: flex-start;
+      }
+      .meta small {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--mute);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .hero-foot p {
+        color: #3a3834;
+        font-size: clamp(16px, 1.3vw, 18px);
+        max-width: 58ch;
+      }
 
-  /* reveal */
-  .rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
-  .rv.in{opacity:1;transform:none}
+      /* reveal */
+      .rv {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+          opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+          transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
 
-  /* ---------- section heads ---------- */
-  section.block{padding-block:clamp(56px,10vw,130px)}
-  .eyebrow{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid var(--ink);padding-bottom:16px;margin-bottom:clamp(32px,5vw,60px)}
-  .eyebrow h5{font-size:15px;font-weight:600;letter-spacing:.01em}
-  .eyebrow span{font-family:var(--mono);font-size:12px;color:var(--mute);flex-shrink:0}
-  h2{font-family:var(--display);font-weight:600;font-size:clamp(30px,4.6vw,64px);line-height:1.02;letter-spacing:-.04em;max-width:18ch}
-  h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--mute)}
+      /* ---------- section heads ---------- */
+      section.block {
+        padding-block: clamp(56px, 10vw, 130px);
+      }
+      .eyebrow {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        border-bottom: 1px solid var(--ink);
+        padding-bottom: 16px;
+        margin-bottom: clamp(32px, 5vw, 60px);
+      }
+      .eyebrow h5 {
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+      .eyebrow span {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--mute);
+        flex-shrink: 0;
+      }
+      h2 {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(30px, 4.6vw, 64px);
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+        max-width: 18ch;
+      }
+      h2 em {
+        font-family: var(--serif);
+        font-style: italic;
+        font-weight: 400;
+        color: var(--mute);
+      }
 
-  /* ---------- work feature ---------- */
-  .feature{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(30px,5vw,72px);align-items:start}
-  .tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
-  .pill{font-size:13px;font-weight:500;border:1px solid var(--line);padding:6px 14px;border-radius:999px;background:var(--paper)}
-  .pill.live{border-color:var(--accent);color:var(--accent)}
-  .feature h3{font-family:var(--display);font-size:clamp(42px,6.5vw,112px);font-weight:700;letter-spacing:-.06em;line-height:.92;margin-bottom:22px;overflow-wrap:break-word}
-  .lede{font-size:clamp(18px,1.6vw,21px);line-height:1.45;font-weight:500;margin-bottom:22px;max-width:30ch}
-  .feature p.copy{color:#3a3834;margin-bottom:16px;max-width:56ch}
-  .feature p.copy b{color:var(--ink)}
-  .rule{border-left:3px solid var(--accent);padding:4px 0 4px 18px;margin-top:26px;font-family:var(--serif);font-style:italic;font-size:clamp(18px,1.5vw,20px);line-height:1.4;max-width:40ch}
+      /* ---------- work feature ---------- */
+      .feature {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+        gap: clamp(30px, 5vw, 72px);
+        align-items: start;
+      }
+      .tagrow {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 22px;
+      }
+      .pill {
+        font-size: 13px;
+        font-weight: 500;
+        border: 1px solid var(--line);
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: var(--paper);
+      }
+      .pill.live {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .feature h3 {
+        font-family: var(--display);
+        font-size: clamp(42px, 6.2vw, 100px);
+        font-weight: 700;
+        letter-spacing: -0.06em;
+        line-height: 0.92;
+        margin-bottom: 22px;
+        overflow-wrap: break-word;
+      }
+      .lede {
+        font-size: clamp(18px, 1.6vw, 21px);
+        line-height: 1.45;
+        font-weight: 500;
+        margin-bottom: 22px;
+        max-width: 30ch;
+      }
+      .feature p.copy {
+        color: #3a3834;
+        margin-bottom: 16px;
+        max-width: 56ch;
+      }
+      .feature p.copy b {
+        color: var(--ink);
+      }
+      .rule {
+        border-left: 3px solid var(--accent);
+        padding: 4px 0 4px 18px;
+        margin-top: 26px;
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: clamp(18px, 1.5vw, 20px);
+        line-height: 1.4;
+        max-width: 40ch;
+      }
 
-  .media{background:var(--card);border-radius:22px;aspect-ratio:4/5;min-height:430px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;flex-direction:column;gap:24px;text-align:center;padding:clamp(22px,3vw,30px)}
-  .media-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
-  .media .play{width:clamp(64px,6.5vw,84px);height:clamp(64px,6.5vw,84px);border-radius:50%;background:var(--ink);display:grid;place-items:center;transition:transform .35s;flex-shrink:0}
-  .media:hover .play{transform:scale(1.08)}
-  .media .play::before{content:"";border-left:18px solid var(--paper);border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
-  .media b{font-family:var(--display);font-size:clamp(18px,1.6vw,20px);letter-spacing:-.02em;max-width:18ch}
-  .media small{font-family:var(--mono);font-size:12px;color:var(--mute)}
-  .media .chat{width:100%;display:flex;flex-direction:column;gap:8px;margin-top:auto}
-  .bubble{max-width:84%;padding:10px 14px;border-radius:16px;font-size:13px;line-height:1.4;text-align:left}
-  .bubble.q{background:var(--paper);align-self:flex-end;border-bottom-right-radius:4px}
-  .bubble.a{background:var(--ink);color:var(--paper);align-self:flex-start;border-bottom-left-radius:4px}
-  .media .chat .note{font-family:var(--mono);font-size:10px;color:var(--mute);text-align:left}
+      .media {
+        background: var(--card);
+        border-radius: 22px;
+        aspect-ratio: 4/5;
+        min-height: 430px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+        padding: clamp(22px, 3vw, 30px);
+      }
+      .media.media-video {
+        aspect-ratio: 728/918;
+        min-height: 0;
+        padding: 0;
+        background: #000;
+      }
+      .media.media-video video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .media-hero {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+      }
+      .media .play {
+        width: clamp(64px, 6.5vw, 84px);
+        height: clamp(64px, 6.5vw, 84px);
+        border-radius: 50%;
+        background: var(--ink);
+        display: grid;
+        place-items: center;
+        transition: transform 0.35s;
+        flex-shrink: 0;
+      }
+      .media:hover .play {
+        transform: scale(1.08);
+      }
+      .media .play::before {
+        content: "";
+        border-left: 18px solid var(--paper);
+        border-top: 11px solid transparent;
+        border-bottom: 11px solid transparent;
+        margin-left: 5px;
+      }
+      .media b {
+        font-family: var(--display);
+        font-size: clamp(18px, 1.6vw, 20px);
+        letter-spacing: -0.02em;
+        max-width: 18ch;
+      }
+      .media small {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--mute);
+      }
+      .media .chat {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: auto;
+      }
+      .bubble {
+        max-width: 84%;
+        padding: 10px 14px;
+        border-radius: 16px;
+        font-size: 13px;
+        line-height: 1.4;
+        text-align: left;
+      }
+      .bubble.q {
+        background: var(--paper);
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+      }
+      .bubble.a {
+        background: var(--ink);
+        color: var(--paper);
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+      }
+      .media .chat .note {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--mute);
+        text-align: left;
+      }
 
-  .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:clamp(44px,7vw,80px) 0}
-  .stat{padding:28px 20px 26px 0;border-right:1px solid var(--line)}
-  .stat + .stat{padding-left:24px}
-  .stat:last-child{border-right:none}
-  .stat b{display:block;font-family:var(--display);font-size:clamp(32px,4.4vw,58px);font-weight:600;letter-spacing:-.045em;line-height:1;margin-bottom:4px}
-  .stat span{font-size:14px;color:var(--mute);display:block;line-height:1.35}
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        margin: clamp(44px, 7vw, 80px) 0;
+      }
+      .stat {
+        padding: 28px 20px 26px 0;
+        border-right: 1px solid var(--line);
+      }
+      .stat + .stat {
+        padding-left: 24px;
+      }
+      .stat:last-child {
+        border-right: none;
+      }
+      .stat b {
+        display: block;
+        font-family: var(--display);
+        font-size: clamp(32px, 4.4vw, 58px);
+        font-weight: 600;
+        letter-spacing: -0.045em;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .stat span {
+        font-size: 14px;
+        color: var(--mute);
+        display: block;
+        line-height: 1.35;
+      }
 
-  /* work list, Showcasy style */
-  .list-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px}
-  .list-head h5{font-size:15px;font-weight:600}
-  .list-head span{font-family:var(--mono);font-size:12px;color:var(--mute)}
-  .row{display:grid;grid-template-columns:60px minmax(0,1fr) minmax(0,1.3fr) 170px;gap:24px;align-items:baseline;border-top:1px solid var(--line);padding:30px 0;position:relative;transition:padding .35s}
-  .row:last-child{border-bottom:1px solid var(--line)}
-  .row::before{content:"";position:absolute;inset:0 calc(var(--pad) * -1);background:var(--card);opacity:0;transition:opacity .35s;z-index:-1}
-  .row:hover::before{opacity:1}
-  .row:hover{padding-left:12px}
-  .row .n{font-family:var(--mono);font-size:12px;color:var(--mute)}
-  .row h4{font-family:var(--display);font-size:clamp(24px,2.8vw,40px);font-weight:600;letter-spacing:-.035em;line-height:1.05}
-  .row p{color:#3a3834;font-size:16px}
-  .row .cat{justify-self:end;text-align:right}
-  .row .cat .pill{display:inline-block;white-space:nowrap}
-  .row .cat .pill.star{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-  .row .cat small{display:block;margin-top:8px;font-size:12px;color:var(--mute)}
+      /* work list, Showcasy style */
+      .list-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+      .list-head h5 {
+        font-size: 15px;
+        font-weight: 600;
+      }
+      .list-head span {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--mute);
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 60px minmax(0, 1fr) minmax(0, 1.3fr) 170px;
+        gap: 24px;
+        align-items: baseline;
+        border-top: 1px solid var(--line);
+        padding: 30px 0;
+        position: relative;
+        transition: padding 0.35s;
+      }
+      .row:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+      .row::before {
+        content: "";
+        position: absolute;
+        inset: 0 calc(var(--pad) * -1);
+        background: var(--card);
+        opacity: 0;
+        transition: opacity 0.35s;
+        z-index: -1;
+      }
+      .row:hover::before {
+        opacity: 1;
+      }
+      .row:hover {
+        padding-left: 12px;
+      }
+      .row .n {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--mute);
+      }
+      .row h4 {
+        font-family: var(--display);
+        font-size: clamp(24px, 2.8vw, 40px);
+        font-weight: 600;
+        letter-spacing: -0.035em;
+        line-height: 1.05;
+      }
+      .row p {
+        color: #3a3834;
+        font-size: 16px;
+      }
+      .row .cat {
+        justify-self: end;
+        text-align: right;
+      }
+      .row .cat .pill {
+        display: inline-block;
+        white-space: nowrap;
+      }
+      .row .cat .pill.star {
+        background: var(--ink);
+        color: var(--paper);
+        border-color: var(--ink);
+      }
+      .row .cat small {
+        display: block;
+        margin-top: 8px;
+        font-size: 12px;
+        color: var(--mute);
+      }
+      .row.link {
+        cursor: pointer;
+      }
+      .row.link h4 {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 6px;
+        transition: color 0.3s;
+      }
+      .row.link .ext {
+        font-style: normal;
+        font-size: 0.65em;
+        color: var(--mute);
+        transition:
+          transform 0.3s,
+          color 0.3s;
+      }
+      .row.link:hover h4 {
+        color: var(--accent);
+      }
+      .row.link:hover .ext {
+        color: var(--accent);
+        transform: translate(3px, -3px);
+      }
+      .row.link:hover .pill {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .archive-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        margin-bottom: clamp(32px, 5vw, 56px);
+        flex-wrap: wrap;
+      }
+      .archive-head span {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--mute);
+      }
 
-  /* ---------- principles (awards style) ---------- */
-  .think{background:var(--ink);color:var(--paper);border-radius:clamp(18px,2.5vw,28px);margin:0 clamp(8px,1.5vw,20px)}
-  .think .eyebrow{border-color:#3a3834}
-  .think .eyebrow span,.think h2 em{color:#9c978e}
-  .think h2{max-width:14ch}
-  .principles{margin-top:clamp(32px,5vw,64px)}
-  .pr{display:grid;grid-template-columns:60px minmax(0,1fr) minmax(0,1.2fr);gap:24px;align-items:baseline;border-top:1px solid #33312d;padding:30px 0;cursor:default}
-  .pr:last-child{border-bottom:1px solid #33312d}
-  .pr .n{font-family:var(--mono);font-size:12px;color:#8a857c}
-  .pr h4{font-family:var(--display);font-size:clamp(24px,3vw,42px);font-weight:600;letter-spacing:-.035em;line-height:1.05;transition:color .3s,transform .35s}
-  .pr:hover h4{color:var(--accent);transform:translateX(8px)}
-  .pr p{color:#c4bfb5;font-size:16px;max-width:52ch}
+      /* ---------- principles (awards style) ---------- */
+      .think {
+        background: var(--ink);
+        color: var(--paper);
+        border-radius: clamp(18px, 2.5vw, 28px);
+        margin: 0 clamp(8px, 1.5vw, 20px);
+      }
+      .think .eyebrow {
+        border-color: #3a3834;
+      }
+      .think .eyebrow span,
+      .think h2 em {
+        color: #9c978e;
+      }
+      .think h2 {
+        max-width: 14ch;
+      }
+      .principles {
+        margin-top: clamp(32px, 5vw, 64px);
+      }
+      .pr {
+        display: grid;
+        grid-template-columns: 60px minmax(0, 1fr) minmax(0, 1.2fr);
+        gap: 24px;
+        align-items: baseline;
+        border-top: 1px solid #33312d;
+        padding: 30px 0;
+        cursor: default;
+      }
+      .pr:last-child {
+        border-bottom: 1px solid #33312d;
+      }
+      .pr .n {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: #8a857c;
+      }
+      .pr h4 {
+        font-family: var(--display);
+        font-size: clamp(24px, 3vw, 42px);
+        font-weight: 600;
+        letter-spacing: -0.035em;
+        line-height: 1.05;
+        transition:
+          color 0.3s,
+          transform 0.35s;
+      }
+      .pr:hover h4 {
+        color: var(--accent);
+        transform: translateX(8px);
+      }
+      .pr p {
+        color: #c4bfb5;
+        font-size: 16px;
+        max-width: 52ch;
+      }
 
-  /* ---------- path ---------- */
-  .path-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,6vw,90px)}
-  .steps{display:flex;flex-direction:column}
-  .step{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px 16px;border-top:1px solid var(--line);padding:22px 0}
-  .step:last-child{border-bottom:1px solid var(--line)}
-  .step b{font-family:var(--display);font-size:clamp(20px,2.3vw,30px);font-weight:600;letter-spacing:-.03em}
-  .step span{font-family:var(--mono);font-size:12px;color:var(--mute)}
-  .step.now b{color:var(--accent)}
-  .step.link{transition:padding .3s}
-  .step.link .ext{font-style:normal;font-size:.7em;color:var(--mute);display:inline-block;transition:transform .3s,color .3s}
-  .step.link:hover{padding-left:10px}
-  .step.link:hover b,.step.link:hover .ext{color:var(--accent)}
-  .step.link:hover .ext{transform:translate(3px,-3px)}
-  .inline-link{color:var(--ink);border-bottom:1px solid var(--accent)}
-  .inline-link:hover{color:var(--accent)}
-  .path-copy p{color:#3a3834;margin-top:24px;max-width:54ch}
+      /* ---------- story ---------- */
+      .story {
+        margin-top: clamp(32px, 5vw, 64px);
+      }
+      .story-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
+        gap: 24px;
+        align-items: baseline;
+        border-top: 1px solid #33312d;
+        padding: 30px 0;
+      }
+      .story-row:last-child {
+        border-bottom: 1px solid #33312d;
+      }
+      .story .when {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: #8a857c;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .story .when.now {
+        color: var(--accent);
+      }
+      .story p {
+        color: #c4bfb5;
+        max-width: 62ch;
+      }
+      .story p.first {
+        color: var(--paper);
+        font-size: clamp(17px, 1.5vw, 20px);
+        line-height: 1.55;
+      }
+      .pr-label {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: #8a857c;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 14px;
+      }
 
-  /* ---------- academy ---------- */
-  .academy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,6vw,90px)}
-  .academy p{color:#3a3834;margin-bottom:18px;max-width:56ch}
-  .pullq{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.2vw,28px);line-height:1.35;color:var(--ink);border-top:1px solid var(--ink);padding-top:22px;margin-top:8px}
-  .pursue{background:var(--card);border-radius:22px;padding:clamp(22px,3vw,30px);margin-top:28px}
-  .pursue small{font-family:var(--mono);font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.05em}
-  .pursue p{margin:10px 0 0;color:var(--ink);font-size:clamp(16px,1.4vw,18px);font-weight:500}
+      /* ---------- footer ---------- */
+      footer {
+        padding: clamp(64px, 12vw, 160px) 0 40px;
+        text-align: center;
+      }
+      footer .idea {
+        font-size: clamp(16px, 1.4vw, 18px);
+        font-weight: 500;
+        color: var(--mute);
+        margin-bottom: 12px;
+      }
+      footer .big {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(52px, 13vw, 200px);
+        letter-spacing: -0.065em;
+        line-height: 0.9;
+        display: inline-block;
+        transition: color 0.3s;
+      }
+      footer .big:hover {
+        color: var(--accent);
+      }
+      footer .big em {
+        font-family: var(--serif);
+        font-weight: 400;
+      }
+      .contact {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: clamp(28px, 4vw, 40px);
+      }
+      .foot-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        border-top: 1px solid var(--line);
+        margin-top: clamp(56px, 9vw, 110px);
+        padding-top: 24px;
+        font-size: 14px;
+        color: var(--mute);
+        text-align: left;
+      }
+      .foot-bar nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px 22px;
+      }
+      .foot-bar nav a:hover {
+        color: var(--ink);
+      }
 
-  /* ---------- footer ---------- */
-  footer{padding:clamp(64px,12vw,160px) 0 40px;text-align:center}
-  footer .idea{font-size:clamp(16px,1.4vw,18px);font-weight:500;color:var(--mute);margin-bottom:12px}
-  footer .big{font-family:var(--display);font-weight:700;font-size:clamp(52px,13vw,200px);letter-spacing:-.065em;line-height:.9;display:inline-block;transition:color .3s}
-  footer .big:hover{color:var(--accent)}
-  footer .big em{font-family:var(--serif);font-weight:400}
-  .contact{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:clamp(28px,4vw,40px)}
-  .foot-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;border-top:1px solid var(--line);margin-top:clamp(56px,9vw,110px);padding-top:24px;font-size:14px;color:var(--mute);text-align:left}
-  .foot-bar nav{display:flex;flex-wrap:wrap;gap:14px 22px}
-  .foot-bar nav a:hover{color:var(--ink)}
+      /* ---------- responsive ---------- */
+      /* small laptops / large tablets */
+      @media (max-width: 1100px) {
+        .links {
+          gap: 22px;
+        }
+        .row {
+          grid-template-columns: 50px minmax(0, 1fr) minmax(0, 1.4fr);
+          row-gap: 14px;
+        }
+        .row .cat {
+          grid-column: 2 / -1;
+          justify-self: start;
+          text-align: left;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+        .row .cat small {
+          margin-top: 0;
+        }
+      }
+      /* tablets */
+      @media (max-width: 900px) {
+        section[id] {
+          scroll-margin-top: 72px;
+        }
+        .nav {
+          height: 68px;
+        }
+        .menu-toggle {
+          display: inline-flex;
+        }
+        .links {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          background: var(--paper);
+          border-bottom: 1px solid var(--line);
+          padding: 8px var(--pad) 20px;
+          box-shadow: 0 16px 32px rgba(18, 18, 18, 0.06);
+        }
+        header.menu-open .links {
+          display: flex;
+        }
+        .links a {
+          padding: 14px 0;
+          font-size: 17px;
+          border-bottom: 1px solid var(--line);
+          justify-content: space-between;
+        }
+        .links a:last-child {
+          border-bottom: none;
+        }
+        .links a::after {
+          display: none;
+        }
+        .nav .btn {
+          padding: 10px 18px;
+          font-size: 14px;
+        }
+        .hero-foot,
+        .feature {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .hero-foot {
+          gap: 28px;
+        }
+        .media {
+          aspect-ratio: auto;
+          min-height: 360px;
+        }
+        .stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .stat {
+          padding: 24px 20px 22px 0;
+        }
+        .stat:nth-child(odd) {
+          padding-left: 0;
+          padding-right: 20px;
+        }
+        .stat:nth-child(even) {
+          border-right: none;
+          padding-left: 20px;
+          padding-right: 0;
+        }
+        .stat:nth-child(n + 3) {
+          border-top: 1px solid var(--line);
+        }
+        .row {
+          grid-template-columns: 40px minmax(0, 1fr);
+          gap: 10px 16px;
+        }
+        .row p,
+        .row .cat {
+          grid-column: 2;
+        }
+        .pr {
+          grid-template-columns: 40px minmax(0, 1fr);
+          gap: 10px 16px;
+        }
+        .pr p {
+          grid-column: 2;
+        }
+        .story-row {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 10px;
+          padding: 24px 0;
+        }
+        .think {
+          border-radius: 20px;
+        }
+      }
+      /* phones */
+      @media (max-width: 560px) {
+        body {
+          font-size: 16px;
+        }
+        .hero {
+          padding-top: 36px;
+        }
+        h1 {
+          font-size: clamp(34px, 10.5vw, 48px);
+          line-height: 1.02;
+        }
+        .hello {
+          font-size: 16px;
+          margin-bottom: 18px;
+        }
+        .hero-foot .meta {
+          width: 100%;
+        }
+        .hero-foot .meta .btn {
+          width: 100%;
+        }
+        .hero-foot p {
+          font-size: 16px;
+        }
+        h2 {
+          font-size: clamp(28px, 8.2vw, 38px);
+        }
+        .feature h3 {
+          font-size: clamp(38px, 12vw, 56px);
+        }
+        .lede {
+          font-size: 18px;
+        }
+        .rule {
+          font-size: 18px;
+        }
+        .media {
+          min-height: 0;
+          padding: 28px 18px 18px;
+        }
+        .media .play {
+          width: 64px;
+          height: 64px;
+        }
+        .media b {
+          font-size: 18px;
+        }
+        .stat:nth-child(odd) {
+          padding-right: 14px;
+        }
+        .stat:nth-child(even) {
+          padding-left: 14px;
+        }
+        .stat b {
+          font-size: clamp(28px, 8.5vw, 34px);
+        }
+        .stat span {
+          font-size: 13px;
+        }
+        .row,
+        .pr {
+          grid-template-columns: 32px minmax(0, 1fr);
+          gap: 10px 10px;
+          padding: 22px 0;
+        }
+        .row p,
+        .row .cat,
+        .pr p {
+          grid-column: 1 / -1;
+        }
+        .row h4,
+        .pr h4 {
+          font-size: 24px;
+        }
 
-  /* ---------- responsive ---------- */
-  /* small laptops / large tablets */
-  @media (max-width:1100px){
-    .links{gap:22px}
-    .row{grid-template-columns:50px minmax(0,1fr) minmax(0,1.4fr);row-gap:14px}
-    .row .cat{grid-column:2 / -1;justify-self:start;text-align:left;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-    .row .cat small{margin-top:0}
-  }
-  /* tablets */
-  @media (max-width:900px){
-    section[id]{scroll-margin-top:72px}
-    .nav{height:68px}
-    .menu-toggle{display:inline-flex}
-    .links{
-      display:none;
-      position:absolute;
-      top:100%;
-      left:0;
-      right:0;
-      flex-direction:column;
-      align-items:stretch;
-      gap:0;
-      background:var(--paper);
-      border-bottom:1px solid var(--line);
-      padding:8px var(--pad) 20px;
-      box-shadow:0 16px 32px rgba(18,18,18,.06);
-    }
-    header.menu-open .links{display:flex}
-    .links a{padding:14px 0;font-size:17px;border-bottom:1px solid var(--line);justify-content:space-between}
-    .links a:last-child{border-bottom:none}
-    .links a::after{display:none}
-    .nav .btn{padding:10px 18px;font-size:14px}
-    .hero-foot,.feature,.path-grid,.academy{grid-template-columns:minmax(0,1fr)}
-    .hero-foot{gap:28px}
-    .media{aspect-ratio:auto;min-height:360px}
-    .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .stat{padding:24px 20px 22px 0}
-    .stat:nth-child(odd){padding-left:0;padding-right:20px}
-    .stat:nth-child(even){border-right:none;padding-left:20px;padding-right:0}
-    .stat:nth-child(n+3){border-top:1px solid var(--line)}
-    .row{grid-template-columns:40px minmax(0,1fr);gap:10px 16px}
-    .row p,.row .cat{grid-column:2}
-    .pr{grid-template-columns:40px minmax(0,1fr);gap:10px 16px}
-    .pr p{grid-column:2}
-    .think{border-radius:20px}
-  }
-  /* phones */
-  @media (max-width:560px){
-    body{font-size:16px}
-    .hero{padding-top:36px}
-    h1{font-size:clamp(34px,10.5vw,48px);line-height:1.02}
-    .hello{font-size:16px;margin-bottom:18px}
-    .hero-foot .meta{width:100%}
-    .hero-foot .meta .btn{width:100%}
-    .hero-foot p{font-size:16px}
-    h2{font-size:clamp(28px,8.2vw,38px)}
-    .feature h3{font-size:clamp(38px,12vw,56px)}
-    .lede{font-size:18px}
-    .rule{font-size:18px}
-    .media{min-height:0;padding:28px 18px 18px}
-    .media .play{width:64px;height:64px}
-    .media b{font-size:18px}
-    .stat:nth-child(odd){padding-right:14px}
-    .stat:nth-child(even){padding-left:14px}
-    .stat b{font-size:clamp(28px,8.5vw,34px)}
-    .stat span{font-size:13px}
-    .row,.pr{grid-template-columns:32px minmax(0,1fr);gap:10px 10px;padding:22px 0}
-    .row p,.row .cat,.pr p{grid-column:1 / -1}
-    .row h4,.pr h4{font-size:24px}
-    .step{padding:18px 0}
-    .pursue{padding:22px;border-radius:18px}
-    .pursue p{font-size:16px}
-    .pullq{font-size:20px}
-    footer .big{font-size:clamp(46px,15vw,72px)}
-    .contact{flex-direction:column;align-items:stretch}
-    .contact .btn{width:100%;justify-content:center}
-    .foot-bar{flex-direction:column;align-items:flex-start}
-    .foot-bar nav{flex-wrap:wrap;gap:12px 18px}
-  }
-  @media (max-width:380px){
-    .nav .btn span.arr{display:none}
-    .nav .btn{padding:9px 14px;font-size:13px}
-    .stats{grid-template-columns:minmax(0,1fr)}
-    .stat,.stat:nth-child(odd),.stat:nth-child(even){padding:18px 0;border-right:none;border-top:1px solid var(--line)}
-    .stat:first-child{border-top:none}
-  }
-  /* touch screens: no sticky hover shifts */
-  @media (hover:none){
-    .row:hover{padding-left:0}
-    .row:hover::before{opacity:0}
-    .pr:hover h4{transform:none;color:inherit}
-    .step.link:hover{padding-left:0}
-    .btn:hover{transform:none}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .dot{animation:none}
-    .rv{opacity:1;transform:none;transition:none}
-  }
-  @media print{
-    @page{size:A4;margin:14mm}
-    header,.media .play{display:none}
-    body{padding-bottom:0;font-size:11pt}
-    .rv{opacity:1;transform:none}
-    section.block{padding:28px 0;break-inside:avoid-page}
-    .row,.pr,.stat,.pursue{break-inside:avoid}
-    .think{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    footer{padding:40px 0 0}
-  }
-</style>
-</head>
-<body>
-
-<header id="top">
-  <div class="wrap nav">
-    <a class="logo" href="#top" aria-label="Tinovonga Mushayi, back to top">TM</a>
-    <nav class="links" id="site-nav">
-      <a href="#work">Work <sup>(01)</sup></a>
-      <a href="#think">How I think <sup>(02)</sup></a>
-      <a href="#path">Path <sup>(03)</sup></a>
-      <a href="#academy">The Academy <sup>(04)</sup></a>
-    </nav>
-    <div class="nav-right">
-      <a class="btn" href="mailto:tinomushayi@icloud.com">Let’s Talk <span class="arr">→</span></a>
-      <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
-        <svg class="open-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
-        <svg class="close-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-    </div>
-  </div>
-</header>
-
-<main>
-  <section class="hero wrap">
-    <div class="hello rv"><span class="dot"></span>Hello! I’m Tino.</div>
-    <h1 class="rv">I build carefully, for the cases where a wrong answer <em>costs something.</em></h1>
-    <div class="hero-foot">
-      <div class="meta rv">
-        <small>Tinovonga Mushayi · Leuven, Belgium</small>
-        <a class="btn" href="#work">See the work <span class="arr">→</span></a>
-      </div>
-      <p class="rv">Eighteen, mostly self-taught, and about two and a half years into building software in the hours around school. I care most about systems with real stakes, the kind where getting it wrong actually matters to someone. That pull is how most of this past year went to one project: a clinical-reference assistant for pharmacists in Zimbabwe that would rather say nothing than say something wrong. Outside of building, I’m into aviation.</p>
-    </div>
-  </section>
-
-  <!-- 01 WORK -->
-  <section class="block wrap" id="work">
-    <div class="eyebrow rv"><h5>Selected work</h5><span>(01)</span></div>
-
-    <div class="feature">
-      <div class="rv">
-        <div class="tagrow">
-          <span class="pill live">● In pilot · not yet public</span>
-          <span class="pill">Health</span><span class="pill">Messaging</span>
+        footer .big {
+          font-size: clamp(46px, 15vw, 72px);
+        }
+        .contact {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .contact .btn {
+          width: 100%;
+          justify-content: center;
+        }
+        .foot-bar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .foot-bar nav {
+          flex-wrap: wrap;
+          gap: 12px 18px;
+        }
+      }
+      @media (max-width: 380px) {
+        .nav .btn span.arr {
+          display: none;
+        }
+        .nav .btn {
+          padding: 9px 14px;
+          font-size: 13px;
+        }
+        .stats {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .stat,
+        .stat:nth-child(odd),
+        .stat:nth-child(even) {
+          padding: 18px 0;
+          border-right: none;
+          border-top: 1px solid var(--line);
+        }
+        .stat:first-child {
+          border-top: none;
+        }
+      }
+      /* touch screens: no sticky hover shifts */
+      @media (hover: none) {
+        .row:hover {
+          padding-left: 0;
+        }
+        .row:hover::before {
+          opacity: 0;
+        }
+        .row.link:hover h4 {
+          color: inherit;
+        }
+        .row.link:hover .ext {
+          color: var(--mute);
+          transform: none;
+        }
+        .row.link:hover .pill {
+          border-color: var(--line);
+          color: inherit;
+        }
+        .pr:hover h4 {
+          transform: none;
+          color: inherit;
+        }
+        .btn:hover {
+          transform: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .dot {
+          animation: none;
+        }
+        .rv {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+      @media print {
+        @page {
+          size: A4;
+          margin: 14mm;
+        }
+        header,
+        .media .play {
+          display: none;
+        }
+        body {
+          padding-bottom: 0;
+          font-size: 11pt;
+        }
+        .rv {
+          opacity: 1;
+          transform: none;
+        }
+        section.block {
+          padding: 28px 0;
+          break-inside: avoid-page;
+        }
+        .row,
+        .pr,
+        .stat,
+        .story-row {
+          break-inside: avoid;
+        }
+        .think {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        footer {
+          padding: 40px 0 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="top">
+      <div class="wrap nav">
+        <a class="logo" href="#top" aria-label="Tinovonga Mushayi, back to top"
+          >TM</a
+        >
+        <nav class="links" id="site-nav">
+          <a href="#work">Work <sup>(01)</sup></a>
+          <a href="#story">My story <sup>(02)</sup></a>
+          <a href="#projects">Projects <sup>(03)</sup></a>
+        </nav>
+        <div class="nav-right">
+          <a class="btn" href="mailto:tinomushayi@icloud.com"
+            >Let’s Talk <span class="arr">→</span></a
+          >
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Toggle navigation"
+            aria-expanded="false"
+            aria-controls="site-nav"
+          >
+            <svg class="open-ic" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 8h16M4 16h16" />
+            </svg>
+            <svg class="close-ic" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
         </div>
-        <h3>ScriptHelper</h3>
-        <p class="lede">A WhatsApp and Telegram assistant that answers Zimbabwean pharmacists’ medicine questions, and refuses when it can’t answer safely.</p>
-        <p class="copy">Pharmacists need quick, reliable information about the medicines in front of them. The tools that could help either don’t live on the channels they actually use, or they confidently make things up. ScriptHelper is the answer to both problems.</p>
-        <p class="copy">Every clinical reply is grounded in a source it can cite, <b>EDLIZ 2020</b> and the <b>FDA’s product labelling</b>, and if neither covers the question, it declines rather than guess. It’s decision-support, not clinical advice.</p>
-        <p class="rule">The one rule the whole system defends: a clinical answer only ever reaches a verified, licensed pharmacist, and the system never fabricates one.</p>
       </div>
+    </header>
 
-      <div class="media rv" role="img" aria-label="Placeholder for a 60-second screen recording">
-        <div class="media-hero">
-          <div class="play"></div>
-          <b>Watch ScriptHelper answer, and decline, a real question</b>
-          <small>← your 60-second screen recording goes here</small>
+    <main>
+      <section class="hero wrap">
+        <div class="hello rv"><span class="dot"></span>Hello! I’m Tino.</div>
+        <h1 class="rv">
+          I build carefully, for the cases where a wrong answer
+          <em>costs something.</em>
+        </h1>
+        <div class="hero-foot">
+          <div class="meta rv">
+            <small>Tinovonga Mushayi · Leuven, Belgium</small>
+            <a class="btn" href="#work"
+              >See the work <span class="arr">→</span></a
+            >
+          </div>
+          <p class="rv">
+            Eighteen, mostly self-taught, and about three and a half years into
+            building software in the hours around school. I care most about
+            systems with real stakes, the kind where getting it wrong actually
+            matters to someone. That pull is why most of this past summer went
+            into one team project I contributed to: a clinical-reference
+            assistant for pharmacists in Zimbabwe that would rather say nothing
+            than say something wrong. Outside of building, I’m into aviation.
+          </p>
         </div>
-        <div class="chat" aria-hidden="true">
-          <div class="note">illustrative layout only</div>
-          <div class="bubble q">Question from a verified pharmacist</div>
-          <div class="bubble a">Cited answer, or a clean “I don’t have that.”</div>
+      </section>
+
+      <!-- 01 WORK -->
+      <section class="block wrap" id="work">
+        <div class="eyebrow rv">
+          <h5>Highlighted work</h5>
+          <span>(01)</span>
         </div>
-      </div>
-    </div>
 
-    <div class="stats rv">
-      <div class="stat"><b>~1,100</b><span>automated tests</span></div>
-      <div class="stat"><b>2</b><span>clinical sources</span></div>
-      <div class="stat"><b>2</b><span>channels: WhatsApp + Telegram</span></div>
-      <div class="stat"><b>Spec</b><span>first, then code</span></div>
-    </div>
+        <div class="feature">
+          <div class="rv">
+            <div class="tagrow">
+              <span class="pill live">● In pilot · not yet public</span>
+              <span class="pill">Team project</span
+              ><span class="pill">Health</span
+              ><span class="pill">Messaging</span>
+            </div>
+            <h3>ScriptHelper</h3>
+            <p class="lede">
+              A Telegram and WhatsApp assistant that answers Zimbabwean
+              pharmacists’ medicine questions, and refuses when it can’t answer
+              safely.
+            </p>
+            <p class="copy">
+              Pharmacists need quick, reliable information about the medicines
+              in front of them. The tools that could help either don’t live on
+              the channels they actually use, or they confidently make things
+              up. ScriptHelper, a project I worked on with a small team, is
+              built to solve both problems.
+            </p>
+            <p class="copy">
+              Every clinical reply is grounded in a source it can cite: the
+              <b>FDA’s product labelling</b>, fetched live, and, where a
+              deployment switches it on, Zimbabwe’s
+              <b>EDLIZ 2020</b> essential-medicines list. If no source covers
+              the question, it declines rather than guesses. The pilot currently
+              answers from the FDA labelling alone. It’s decision-support, not
+              clinical advice.
+            </p>
+          </div>
 
-    <div class="list-head rv"><h5>What I built inside it</h5><span>3 pieces</span></div>
-    <div class="rows">
-      <div class="row rv">
-        <span class="n">01</span>
-        <h4>The identity seam</h4>
-        <p>The link between who a pharmacist is and whether they’re allowed a clinical answer, including live revocation the moment a licence lapses. My first design left a gap; I caught it myself, said so, and reframed the whole model around it.</p>
-        <div class="cat"><span class="pill star">Solo · my showcase</span><small>What I’m proudest of</small></div>
-      </div>
-      <div class="row rv">
-        <span class="n">02</span>
-        <h4>The licence gate</h4>
-        <p>The check that stops an unlicensed number ever reaching the agent. Built jointly over two rounds of review, every finding resolved before it merged.</p>
-        <div class="cat"><span class="pill">In collaboration</span><small>Built together</small></div>
-      </div>
-      <div class="row rv">
-        <span class="n">03</span>
-        <h4>The channels</h4>
-        <p>So WhatsApp and Telegram share one identity instead of two: the channel-neutral gate, a drug-data client that fails loud instead of guessing, and a fix that kept every answer’s citation attached.</p>
-        <div class="cat"><span class="pill">Team ship</span><small>My pieces, named</small></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 02 THINK -->
-  <section class="block think" id="think">
-    <div class="wrap">
-      <div class="eyebrow rv"><h5>How I think</h5><span>(02)</span></div>
-      <h2 class="rv">A few things I <em>don’t bend on.</em></h2>
-      <div class="principles">
-        <div class="pr rv"><span class="n">01</span><h4>Refuse before you guess.</h4><p>Honesty is the feature, not the fallback. A clean “I don’t have that” beats a confident wrong answer every time, especially in medicine.</p></div>
-        <div class="pr rv"><span class="n">02</span><h4>Fail loud.</h4><p>An error should look like an error, never like an answer. The two can never be allowed to read the same to the person on the other end.</p></div>
-        <div class="pr rv"><span class="n">03</span><h4>Urgency.</h4><p>Moving fast and being careful aren’t opposites to me: I ship quickly because the safety checks are already built in. When something matters, I believe getting something out quick is important.</p></div>
-        <div class="pr rv"><span class="n">04</span><h4>Judgment is the real work.</h4><p>I build with AI tools heavily and I’m not shy about it. But what to refuse, what to cite, what counts as safe, that part is mine, and it’s the part that matters.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 03 PATH -->
-  <section class="block wrap" id="path">
-    <div class="eyebrow rv"><h5>How I got here</h5><span>(03)</span></div>
-    <div class="path-grid">
-      <div class="path-copy rv">
-        <h2>About two and a half years, <em>mostly around school.</em></h2>
-        <p>I started with web development, then picked up C# and Python through small command-line tools and an early machine-learning experiment. A full-stack webshop (fictional), <a class="inline-link" href="https://kansha04.github.io/EuroSpec/" target="_blank" rel="noopener">EuroSpec</a>, came just before ScriptHelper, a family project I volunteered to join that became a regulated, test-hardened health system.</p>
-        <p>I like problems that sit a little beyond what I know how to do yet, and the distance between that first project and this one is the part I’d point to.</p>
-      </div>
-      <div class="steps rv">
-        <div class="step"><b>Web development</b><span>where it started</span></div>
-        <div class="step"><b>C# &amp; Python</b><span>CLI tools · early ML</span></div>
-        <a class="step link" href="https://kansha04.github.io/EuroSpec/" target="_blank" rel="noopener"><b>EuroSpec webshop <i class="ext">↗</i></b><span>full stack · view live</span></a>
-        <div class="step now"><b>ScriptHelper</b><span>now · in pilot</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 04 ACADEMY -->
-  <section class="block wrap" id="academy">
-    <div class="eyebrow rv"><h5>Why The Academy</h5><span>(04)</span></div>
-    <div class="academy">
-      <div class="rv">
-        <h2>A year to build the thing <em>I can’t build alone yet.</em></h2>
-        <div class="pursue">
-          <small>What I’d pursue in the year</small>
-          <p>Help take ScriptHelper from a careful pilot to something real pharmacists depend on, and find the next project or challenge that can really push me, hopefully something in aviation!</p>
+          <div class="media media-video rv">
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              width="728"
+              height="918"
+              poster="media/demo-poster.jpg"
+              aria-label="Screen recording: ScriptHelper answering, and declining, a real pharmacist question"
+            >
+              <source src="media/scripthelper-demo.mp4" type="video/mp4" />
+              Your browser doesn’t support embedded video.
+              <a href="media/scripthelper-demo.mp4">Download the demo</a>.
+            </video>
+          </div>
         </div>
-      </div>
-      <div class="rv">
-        <p>The Academy weighs proof of work and agency over grades, which is the only lens that has ever made sense to me. I’ve done my best work when nobody assigned it and the standard was simply whether it was good enough to trust.</p>
-        <p>I build because it keeps putting me in front of problems I’m not ready for at the moment. On ScriptHelper, I didn’t know how to make sure a clinical answer only ever reached a verified pharmacist.</p>
-        <p class="pullq">My first design left a gap. I found, fixed and rebuilt the model around it. That’s the feeling I chase.</p>
-      </div>
-    </div>
-  </section>
-</main>
 
-<footer class="wrap">
-  <p class="idea rv">Have a question, or a problem with real stakes?</p>
-  <a class="big rv" href="mailto:tinomushayi@icloud.com">Let’s <em>talk.</em></a>
-  <div class="contact rv">
-    <a class="btn" href="mailto:tinomushayi@icloud.com">tinomushayi@icloud.com <span class="arr">→</span></a>
-    <a class="btn ghost" href="https://github.com/kansha04" target="_blank" rel="noopener">github.com/kansha04 <span class="arr">→</span></a>
-  </div>
-  <div class="foot-bar">
-    <span>Tinovonga Mushayi · built for The Academy, Founding Class · Leuven 2026</span>
-    <nav><a href="#work">Work</a><a href="#think">How I think</a><a href="#path">Path</a><a href="#academy">The Academy</a></nav>
-  </div>
-</footer>
+        <div class="stats rv">
+          <div class="stat"><b>3,000+</b><span>automated test cases</span></div>
+          <div class="stat">
+            <b>2</b><span>clinical sources built (FDA live in pilot)</span>
+          </div>
+          <div class="stat">
+            <b>2</b><span>channels built: Telegram (live) + WhatsApp</span>
+          </div>
+          <div class="stat"><b>Spec</b><span>first, then code</span></div>
+        </div>
 
-<script>
-  const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-  }), {threshold:.12, rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.rv').forEach((el,i) => {
-    el.style.transitionDelay = (el.closest('.hero') ? i*90 : 0) + 'ms';
-    io.observe(el);
-  });
-  const hdr = document.querySelector('header');
-  const toggleBtn = document.querySelector('.menu-toggle');
-  const closeMenu = () => {
-    hdr.classList.remove('menu-open');
-    toggleBtn?.setAttribute('aria-expanded', 'false');
-  };
-  toggleBtn?.addEventListener('click', () => {
-    const open = hdr.classList.toggle('menu-open');
-    toggleBtn.setAttribute('aria-expanded', String(open));
-  });
-  document.querySelectorAll('#site-nav a, .logo').forEach(a => a.addEventListener('click', closeMenu));
-  addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-  addEventListener('resize', () => { if (innerWidth > 900) closeMenu(); }, {passive:true});
-  addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 10), {passive:true});
-</script>
-</body>
+        <div class="list-head rv">
+          <h5>What I contributed</h5>
+          <span>3 pieces</span>
+        </div>
+        <div class="rows">
+          <div class="row rv">
+            <span class="n">01</span>
+            <h4>The identity seam</h4>
+            <p>
+              The link between who a pharmacist is and whether they’re allowed a
+              clinical answer, including live revocation the moment a licence
+              lapses. My first design left a gap; I caught it myself, said so,
+              and rebuilt the model around it.
+            </p>
+            <div class="cat">
+              <span class="pill star">Solo · my showcase</span
+              ><small>What I’m proudest of</small>
+            </div>
+          </div>
+          <div class="row rv">
+            <span class="n">02</span>
+            <h4>The licence gate</h4>
+            <p>
+              The check that stops an unlicensed number ever reaching the agent.
+              Built jointly over two rounds of review, every finding resolved
+              before it merged.
+            </p>
+            <div class="cat">
+              <span class="pill">In collaboration</span
+              ><small>Built together</small>
+            </div>
+          </div>
+          <div class="row rv">
+            <span class="n">03</span>
+            <h4>The channels</h4>
+            <p>
+              So Telegram and WhatsApp share one identity instead of two: the
+              channel-neutral gate, a drug-data client that fails loudly instead
+              of guessing, and a fix that kept every answer’s citation attached.
+            </p>
+            <div class="cat">
+              <span class="pill">Team ship</span><small>My pieces, named</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 STORY -->
+      <section class="block think" id="story">
+        <div class="wrap">
+          <div class="eyebrow rv">
+            <h5>My story</h5>
+            <span>(02)</span>
+          </div>
+          <h2 class="rv">My story, <em>in my own words.</em></h2>
+
+          <div class="story">
+            <div class="story-row rv">
+              <span class="when">Where it started</span>
+              <p class="first">
+                My name is Tinovonga Mushayi. I was born in Zimbabwe in 2008,
+                which makes me 18, and moved to South Africa in late 2012. When
+                I was 14, a relative who was a self-taught programmer told me
+                about web development, and that was when I started getting into
+                coding and tech. I followed Udemy courses and YouTube tutorials
+                on HTML and CSS, building simple pages that I was so proud of at
+                the time (it’s always funny to look back at them).
+              </p>
+            </div>
+            <div class="story-row rv">
+              <span class="when">Leuven</span>
+              <p>
+                Not long after, I learned that my family and I would be moving
+                to Belgium. It was going to be a big change, and I was very
+                excited for it. I packed up my desktop in a suitcase, hoped it
+                would survive the flight, and after a long journey, we finally
+                arrived in Leuven, where we still live today. At the time, being
+                in a completely new country felt both daunting and exhilarating.
+                Learning Dutch and adjusting to the new school system was my
+                first priority at the start, which caused me to put coding on
+                the back burner for a solid few months.
+              </p>
+            </div>
+            <div class="story-row rv">
+              <span class="when">The plateau</span>
+              <p>
+                Wanting to go deeper into my coding journey, I started taking
+                courses on platforms like Codecademy and freeCodeCamp. This is
+                where I began learning languages like JavaScript and Python. I
+                eventually finished some of those courses, but I felt like I had
+                hit a plateau, as though I wasn’t really understanding what I
+                was learning. It stayed like this until around the summer of
+                2025, when I realized that focusing so much on syntax was a
+                waste of time, and that building things that challenged me and
+                that I enjoyed was much more fulfilling. 
+              </p>
+            </div>
+            <div class="story-row rv">
+              <span class="when">Building</span>
+              <p>
+                I continued designing websites and started building more
+                ambitious projects, such as a car dealership site (<a
+                  href="https://kansha04.github.io/EuroSpec/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >EuroSpec</a
+                >), a live earthquake map built on the USGS data feed (<a
+                  href="https://kansha04.github.io/Seismic_Core/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Seismic Core</a
+                >), and
+                <a
+                  href="https://acsyspharma.be"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >the website for my dad’s business</a
+                >. I gradually realized how much I enjoyed seeing how technology
+                works and how it can be applied to other fields, which
+                ultimately led me to choose Business Supporting Computer Science
+                as my high school track.
+              </p>
+            </div>
+            <div class="story-row rv">
+              <span class="when">This summer (2026)</span>
+              <p>
+                This past summer was my biggest leap: I was a main contributor
+                to building ScriptHelper joining a 3-person engineering team
+                which took it from a initial prototype into a live pilot. It was
+                my first exposure to a real, production-level system, and a huge
+                step up from what I was used to, but I dove straight in. I
+                started self-assigning tasks and learning how production systems
+                are built, and I learned a great deal from people with far more
+                experience than me.
+              </p>
+            </div>
+            <div class="story-row rv">
+              <span class="when now">NOW</span>
+              <p>
+                I’m working part time as a Student Software Engineer at
+                Cambiar.ai, contributing to projects with real users and
+                tackling tougher challenges, as well as starting to work on
+                harder projects I have planned within the aviation.
+              </p>
+            </div>
+          </div>
+
+          <div class="principles">
+            <div class="pr-label rv">One thing I don’t bend on</div>
+            <div class="pr rv">
+              <span class="n">→</span>
+              <h4>Urgency.</h4>
+              <p>
+                Moving fast and being careful aren’t opposites to me: I ship
+                quickly because the safety checks are already built in. When
+                something matters, waiting is a cost too, so I get a careful
+                first version out and improve it in the open.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 PROJECTS -->
+      <section class="block wrap" id="projects">
+        <div class="eyebrow rv">
+          <h5>Other projects</h5>
+          <span>(03)</span>
+        </div>
+        <div class="archive-head rv">
+          <h2>Archive, <em>and earlier builds.</em></h2>
+          <span>3 projects</span>
+        </div>
+
+        <div class="rows">
+          <a
+            class="row link rv"
+            href="https://kansha04.github.io/EuroSpec/"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="n">01</span>
+            <h4>EuroSpec <i class="ext">↗</i></h4>
+            <p>
+              A fictional multi-page car dealership site for German performance
+              brands, built with HTML, CSS and JavaScript on a PHP and MySQL
+              back end. It has brand filtering, car detail pages, a light and
+              dark theme, and an admin page for adding, editing and deleting
+              cars. The live demo runs on built-in sample data.
+            </p>
+            <div class="cat">
+              <span class="pill star">Dealership site · Live demo</span
+              ><small>kansha04.github.io/EuroSpec</small>
+            </div>
+          </a>
+          <a
+            class="row link rv"
+            href="https://acsyspharma.be"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="n">02</span>
+            <h4>AcsysPharma <i class="ext">↗</i></h4>
+            <p>
+              A clean corporate web presence designed and deployed for my
+              father’s pharmaceutical consulting business in Belgium, tailored
+              for industry clients.
+            </p>
+            <div class="cat">
+              <span class="pill">Client · Live</span
+              ><small>acsyspharma.be</small>
+            </div>
+          </a>
+          <a
+            class="row link rv"
+            href="https://kansha04.github.io/Seismic_Core/"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="n">03</span>
+            <h4>Seismic Core <i class="ext">↗</i></h4>
+            <p>
+              A real-time earthquake map built on the USGS live feed. It
+              refreshes every two minutes, sizes and colours markers by
+              magnitude, filters by magnitude, and shows depth class and tsunami
+              status for each quake, with a dark mode that swaps the map tiles
+              too.
+            </p>
+            <div class="cat">
+              <span class="pill">Web app · Live</span
+              ><small>kansha04.github.io/Seismic_Core</small>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <p class="idea rv">Have a question, or a problem with real stakes?</p>
+      <a class="big rv" href="mailto:tinomushayi@icloud.com"
+        >Let’s <em>talk.</em></a
+      >
+      <div class="contact rv">
+        <a class="btn" href="mailto:tinomushayi@icloud.com"
+          >tinomushayi@icloud.com <span class="arr">→</span></a
+        >
+        <a
+          class="btn ghost"
+          href="https://github.com/kansha04"
+          target="_blank"
+          rel="noopener"
+          >github.com/kansha04 <span class="arr">→</span></a
+        >
+      </div>
+      <div class="foot-bar">
+        <span>Tinovonga Mushayi · Leuven 2026</span>
+        <nav>
+          <a href="#work">Work</a><a href="#story">My story</a
+          ><a href="#projects">Projects</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      const io = new IntersectionObserver(
+        (es) =>
+          es.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          }),
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+      );
+      document.querySelectorAll(".rv").forEach((el, i) => {
+        el.style.transitionDelay = (el.closest(".hero") ? i * 90 : 0) + "ms";
+        io.observe(el);
+      });
+      const hdr = document.querySelector("header");
+      const toggleBtn = document.querySelector(".menu-toggle");
+      const closeMenu = () => {
+        hdr.classList.remove("menu-open");
+        toggleBtn?.setAttribute("aria-expanded", "false");
+      };
+      toggleBtn?.addEventListener("click", () => {
+        const open = hdr.classList.toggle("menu-open");
+        toggleBtn.setAttribute("aria-expanded", String(open));
+      });
+      document
+        .querySelectorAll("#site-nav a, .logo")
+        .forEach((a) => a.addEventListener("click", closeMenu));
+      addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeMenu();
+      });
+      addEventListener(
+        "resize",
+        () => {
+          if (innerWidth > 900) closeMenu();
+        },
+        { passive: true },
+      );
+      addEventListener(
+        "scroll",
+        () => hdr.classList.toggle("scrolled", scrollY > 10),
+        { passive: true },
+      );
+    </script>
+  </body>
 </html>
