@@ -256,6 +256,11 @@
         gap: 18px;
         align-items: flex-start;
       }
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
       .meta small {
         font-family: var(--mono);
         font-size: 12px;
@@ -664,6 +669,10 @@
         padding: 30px 0;
         cursor: default;
       }
+      .pr:not(:has(p)) {
+        grid-template-columns: 60px minmax(0, 1fr);
+        align-items: center;
+      }
       .pr:last-child {
         border-bottom: 1px solid #33312d;
       }
@@ -927,10 +936,12 @@
           font-size: 16px;
           margin-bottom: 18px;
         }
-        .hero-foot .meta {
+        .hero-foot .meta,
+        .hero-actions {
           width: 100%;
         }
-        .hero-foot .meta .btn {
+        .hero-foot .meta .btn,
+        .hero-actions .btn {
           width: 100%;
         }
         .hero-foot p {
@@ -1113,6 +1124,7 @@
           <a href="#work">Work <sup>(01)</sup></a>
           <a href="#story">My story <sup>(02)</sup></a>
           <a href="#projects">Projects <sup>(03)</sup></a>
+          <a href="https://github.com/kansha04" target="_blank" rel="noopener">GitHub <sup>↗</sup></a>
         </nav>
         <div class="nav-right">
           <a class="btn" href="mailto:tinomushayi@icloud.com"
@@ -1140,24 +1152,29 @@
       <section class="hero wrap">
         <div class="hello rv"><span class="dot"></span>Hello! I’m Tino.</div>
         <h1 class="rv">
-          I build carefully, for the cases where a wrong answer
-          <em>costs something.</em>
+          Engineering reliable systems for the domains where wrong answers
+          <em>have real consequences.</em>
         </h1>
         <div class="hero-foot">
           <div class="meta rv">
             <small>Tinovonga Mushayi · Leuven, Belgium</small>
-            <a class="btn" href="#work"
-              >See the work <span class="arr">→</span></a
-            >
+            <div class="hero-actions">
+              <a class="btn" href="#work"
+                >See the work <span class="arr">→</span></a
+              >
+              <a class="btn ghost" href="https://github.com/kansha04" target="_blank" rel="noopener"
+                >GitHub <span class="arr">↗</span></a
+              >
+            </div>
           </div>
           <p class="rv">
-            Eighteen, mostly self-taught, and about three and a half years into
-            building software in the hours around school. I care most about
-            systems with real stakes, the kind where getting it wrong actually
-            matters to someone. That pull is why most of this past summer went
-            into one team project I contributed to: a clinical-reference
-            assistant for pharmacists in Zimbabwe that would rather say nothing
-            than say something wrong. Outside of building, I’m into aviation.
+            18-year-old based in Leuven, Belgium, focused on
+            production systems, applied AI, and high-reliability software. Over
+            the summer, I co-engineered ScriptHelper—a zero-hallucination
+            clinical reference assistant deployed for pharmacists in Zimbabwe.
+            Incoming Student Software Engineer at Cambiar.ai. My interest in
+            aviation shapes how I write code: checklist discipline, strict
+            boundaries, and systems designed to fail safely rather than guess.
           </p>
         </div>
       </section>
@@ -1173,31 +1190,36 @@
           <div class="rv">
             <div class="tagrow">
               <span class="pill live">● In pilot · not yet public</span>
-              <span class="pill">Team project</span
-              ><span class="pill">Health</span
-              ><span class="pill">Messaging</span>
+              <span class="pill">Applied AI / RAG</span>
+              <span class="pill">Health</span>
+              <span class="pill">Messaging</span>
+              <span class="pill">Zero-Hallucination Design</span>
             </div>
             <h3>ScriptHelper</h3>
             <p class="lede">
-              A Telegram and WhatsApp assistant that answers Zimbabwean
-              pharmacists’ medicine questions, and refuses when it can’t answer
-              safely.
+              A deterministic, hallucination-resistant clinical decision-support
+              assistant delivering verified drug guidance to Zimbabwean
+              pharmacists over Telegram &amp; WhatsApp.
             </p>
             <p class="copy">
               Pharmacists need quick, reliable information about the medicines
               in front of them. The tools that could help either don’t live on
               the channels they actually use, or they confidently make things
-              up. ScriptHelper, a project I worked on with a small team, is
-              built to solve both problems.
+              up. ScriptHelper, built with a small engineering team, is
+              designed to solve both problems.
             </p>
             <p class="copy">
-              Every clinical reply is grounded in a source it can cite: the
-              <b>FDA’s product labelling</b>, fetched live, and, where a
-              deployment switches it on, Zimbabwe’s
+              Every clinical reply is grounded in verified sources: the
+              <b>FDA’s product labelling</b>, fetched live, and Zimbabwe’s
               <b>EDLIZ 2020</b> essential-medicines list. If no source covers
-              the question, it declines rather than guesses. The pilot currently
-              answers from the FDA labelling alone. It’s decision-support, not
-              clinical advice.
+              the question with sufficient confidence, the assistant declines
+              rather than guesses. Designed strictly as decision-support with
+              full citation traceability, not ungrounded clinical advice.
+            </p>
+            <p class="copy">
+              Built spec-first using GitHub SpecKit and AI assistance—defining strict
+              data contracts and deterministic verification gates upfront before
+              implementing and refining the code under rigorous team review.
             </p>
           </div>
 
@@ -1226,7 +1248,9 @@
           <div class="stat">
             <b>2</b><span>channels built: Telegram (live) + WhatsApp</span>
           </div>
-          <div class="stat"><b>Spec</b><span>first, then code</span></div>
+          <div class="stat">
+            <b>Spec-first</b><span>GitHub SpecKit + AI workflow</span>
+          </div>
         </div>
 
         <div class="list-head rv">
@@ -1238,10 +1262,12 @@
             <span class="n">01</span>
             <h4>The identity seam</h4>
             <p>
-              The link between who a pharmacist is and whether they’re allowed a
-              clinical answer, including live revocation the moment a licence
-              lapses. My first design left a gap; I caught it myself, said so,
-              and rebuilt the model around it.
+              Designed the live-read identity layer that decides whether a
+              pharmacist gets a clinical answer. My first design copied KYC
+              results into the licence gate and would have gone stale; analysis
+              showed revocation and expiry had no path through it. I replanned
+              it so the gate reads identity live, and a revoked or expired
+              pharmacist loses access on the next decision.
             </p>
             <div class="cat">
               <span class="pill star">Solo · my showcase</span
@@ -1250,24 +1276,27 @@
           </div>
           <div class="row rv">
             <span class="n">02</span>
-            <h4>The licence gate</h4>
+            <h4>The KYC gate</h4>
             <p>
-              The check that stops an unlicensed number ever reaching the agent.
-              Built jointly over two rounds of review, every finding resolved
-              before it merged.
+              Designed and built the national-ID verification gate ahead of
+              clinical access: ID checksum validation, an attempt cap, expiry
+              and revocation, and an audit trail that never stores the raw ID.
+              Took it through two rounds of review, fixing every finding before
+              merge.
             </p>
             <div class="cat">
-              <span class="pill">In collaboration</span
-              ><small>Built together</small>
+              <span class="pill star">Solo · core gate</span
+              ><small>Authored end-to-end</small>
             </div>
           </div>
           <div class="row rv">
             <span class="n">03</span>
-            <h4>The channels</h4>
+            <h4>Channels and sources</h4>
             <p>
-              So Telegram and WhatsApp share one identity instead of two: the
-              channel-neutral gate, a drug-data client that fails loudly instead
-              of guessing, and a fix that kept every answer’s citation attached.
+              Moved channel-specific checks onto a capability flag so Telegram
+              and WhatsApp share one gate, made the FDA client fail instead of
+              defaulting when label data is missing, and fixed citation
+              rendering so each answer carries its sources exactly once.
             </p>
             <div class="cat">
               <span class="pill">Team ship</span><small>My pieces, named</small>
@@ -1289,104 +1318,94 @@
             <div class="story-row rv">
               <span class="when">Where it started</span>
               <p class="first">
-                My name is Tinovonga Mushayi. I was born in Zimbabwe in 2008,
-                which makes me 18, and moved to South Africa in late 2012. When
-                I was 14, a relative who was a self-taught programmer told me
-                about web development, and that was when I started getting into
-                coding and tech. I followed Udemy courses and YouTube tutorials
-                on HTML and CSS, building simple pages that I was so proud of at
-                the time (it’s always funny to look back at them).
+                My name is Tinovonga Mushayi. I was born in Zimbabwe in 2008
+                (currently 18) and moved to South Africa in late 2012. When I
+                was 14, a relative who was a self-taught programmer introduced
+                me to web development, sparking my obsession with tech. I started
+                with HTML and CSS tutorials, building simple static pages that
+                felt like magic at the time.
               </p>
             </div>
             <div class="story-row rv">
               <span class="when">Leuven</span>
               <p>
-                Not long after, I learned that my family and I would be moving
-                to Belgium. It was going to be a big change, and I was very
-                excited for it. I packed up my desktop in a suitcase, hoped it
-                would survive the flight, and after a long journey, we finally
-                arrived in Leuven, where we still live today. At the time, being
-                in a completely new country felt both daunting and exhilarating.
-                Learning Dutch and adjusting to the new school system was my
-                first priority at the start, which caused me to put coding on
-                the back burner for a solid few months.
+                Shortly after, my family relocated to Belgium. I packed my
+                desktop computer into a suitcase, crossed my fingers it would
+                survive the flight, and landed in Leuven, where we live today.
+                Moving to a completely new country was both daunting and
+                electrifying. Learning Dutch and adapting to a new school system
+                took immediate priority, forcing me to put coding on hold for a
+                few months.
               </p>
             </div>
             <div class="story-row rv">
               <span class="when">The plateau</span>
               <p>
-                Wanting to go deeper into my coding journey, I started taking
-                courses on platforms like Codecademy and freeCodeCamp. This is
-                where I began learning languages like JavaScript and Python. I
-                eventually finished some of those courses, but I felt like I had
-                hit a plateau, as though I wasn’t really understanding what I
-                was learning. It stayed like this until around the summer of
-                2025, when I realized that focusing so much on syntax was a
-                waste of time, and that building things that challenged me and
-                that I enjoyed was much more fulfilling. 
+                Determined to go deeper, I worked through courses on Codecademy
+                and freeCodeCamp, picking up JavaScript and Python. But after
+                finishing several tracks, I hit a wall: syntax made sense, but I
+                wasn’t actually learning how software worked. In the summer of
+                2025, I made a conscious pivot: stop grinding tutorial exercises,
+                and start building complex projects that forced me to solve real
+                engineering problems.
               </p>
             </div>
             <div class="story-row rv">
               <span class="when">Building</span>
               <p>
-                I continued designing websites and started building more
-                ambitious projects, such as a car dealership site (<a
-                  href="https://kansha04.github.io/EuroSpec/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >EuroSpec</a
-                >), a live earthquake map built on the USGS data feed (<a
+                I started designing and deploying full projects: a live
+                earthquake tracker powered by the USGS seismic feed (<a
                   href="https://kansha04.github.io/Seismic_Core/"
                   target="_blank"
                   rel="noopener noreferrer"
                   >Seismic Core</a
-                >), and
-                <a
+                >), a production corporate site for my dad’s consulting firm (<a
                   href="https://acsyspharma.be"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >the website for my dad’s business</a
-                >. I gradually realized how much I enjoyed seeing how technology
-                works and how it can be applied to other fields, which
-                ultimately led me to choose Business Supporting Computer Science
-                as my high school track.
+                  >AcsysPharma</a
+                >), and a dynamic dealership concept (<a
+                  href="https://kansha04.github.io/EuroSpec/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >EuroSpec</a
+                >). Seeing how software applied directly to physical and
+                business problems led me to choose Business Supporting Computer
+                Science as my high school track.
               </p>
             </div>
             <div class="story-row rv">
               <span class="when">This summer (2026)</span>
               <p>
-                This past summer was my biggest leap: I was a main contributor
-                to building ScriptHelper joining a 3-person engineering team
-                which took it from a initial prototype into a live pilot. It was
-                my first exposure to a real, production-level system, and a huge
-                step up from what I was used to, but I dove straight in. I
-                started self-assigning tasks and learning how production systems
-                are built, and I learned a great deal from people with far more
-                experience than me.
+                My biggest step forward: joining a 3-person engineering team to
+                take ScriptHelper from an early prototype into a live clinical
+                pilot. It was my first exposure to production-grade software with
+                clinical stakes. I dove straight in, self-assigned tickets,
+                participated in rigorous code reviews, and learned how real
+                systems are architected under the guidance of seasoned engineers.
               </p>
             </div>
             <div class="story-row rv">
               <span class="when now">NOW</span>
               <p>
-                I’m working part time as a Student Software Engineer at
-                Cambiar.ai, contributing to projects with real users and
-                tackling tougher challenges, as well as starting to work on
-                harder projects I have planned within the aviation.
+                Today, I work part-time as a Student Software Engineer at
+                Cambiar.ai, writing software used by real customers and tackling
+                production challenges, while architecting independent projects at
+                the intersection of AI and aviation safety.
               </p>
             </div>
           </div>
 
           <div class="principles">
-            <div class="pr-label rv">One thing I don’t bend on</div>
+            <div class="pr-label rv">Things I don’t bend on</div>
             <div class="pr rv">
-              <span class="n">→</span>
+              <span class="n">01</span>
               <h4>Urgency.</h4>
-              <p>
-                Moving fast and being careful aren’t opposites to me: I ship
-                quickly because the safety checks are already built in. When
-                something matters, waiting is a cost too, so I get a careful
-                first version out and improve it in the open.
-              </p>
+            </div>
+            <div class="pr rv">
+              <span class="n">02</span>
+              <h4>AI Acceleration.</h4>
+
             </div>
           </div>
         </div>
@@ -1399,29 +1418,47 @@
           <span>(03)</span>
         </div>
         <div class="archive-head rv">
-          <h2>Archive, <em>and earlier builds.</em></h2>
-          <span>3 projects</span>
+          <h2>Projects, <em>and other builds.</em></h2>
+          <span>4 projects</span>
         </div>
 
         <div class="rows">
           <a
             class="row link rv"
-            href="https://kansha04.github.io/EuroSpec/"
+            href="https://cambiar.ai"
             target="_blank"
             rel="noopener"
           >
             <span class="n">01</span>
-            <h4>EuroSpec <i class="ext">↗</i></h4>
+            <h4>Cambiar.ai <i class="ext">↗</i></h4>
             <p>
-              A fictional multi-page car dealership site for German performance
-              brands, built with HTML, CSS and JavaScript on a PHP and MySQL
-              back end. It has brand filtering, car detail pages, a light and
-              dark theme, and an admin page for adding, editing and deleting
-              cars. The live demo runs on built-in sample data.
+              Student Software Engineer working part-time on production AI
+              software applications for real users. Building reliable features
+              within an active engineering cycle using modern AI-augmented workflows.
             </p>
             <div class="cat">
-              <span class="pill star">Dealership site · Live demo</span
-              ><small>kansha04.github.io/EuroSpec</small>
+              <span class="pill star">Engineering Role · Soon</span
+              ><small>cambiar.ai</small>
+            </div>
+          </a>
+          <a
+            class="row link rv"
+            href="https://kansha04.github.io/Seismic_Core/"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="n">02</span>
+            <h4>Seismic Core <i class="ext">↗</i></h4>
+            <p>
+              A real-time earthquake map built on the USGS live feed. It
+              refreshes every two minutes, sizes and colours markers by
+              magnitude, filters by magnitude, and shows depth class and tsunami
+              status for each quake, with a dark mode that swaps the map tiles
+              too.
+            </p>
+            <div class="cat">
+              <span class="pill">Web app · Live</span
+              ><small>kansha04.github.io/Seismic_Core</small>
             </div>
           </a>
           <a
@@ -1430,7 +1467,7 @@
             target="_blank"
             rel="noopener"
           >
-            <span class="n">02</span>
+            <span class="n">03</span>
             <h4>AcsysPharma <i class="ext">↗</i></h4>
             <p>
               A clean corporate web presence designed and deployed for my
@@ -1444,22 +1481,22 @@
           </a>
           <a
             class="row link rv"
-            href="https://kansha04.github.io/Seismic_Core/"
+            href="https://kansha04.github.io/EuroSpec/"
             target="_blank"
             rel="noopener"
           >
-            <span class="n">03</span>
-            <h4>Seismic Core <i class="ext">↗</i></h4>
+            <span class="n">04</span>
+            <h4>EuroSpec <i class="ext">↗</i></h4>
             <p>
-              A real-time earthquake map built on the USGS live feed. It
-              refreshes every two minutes, sizes and colours markers by
-              magnitude, filters by magnitude, and shows depth class and tsunami
-              status for each quake, with a dark mode that swaps the map tiles
-              too.
+              A fictional multi-page car dealership site for German performance
+              brands, built with HTML, CSS and JavaScript on a PHP and MySQL
+              back end. It has brand filtering, car detail pages, a light and
+              dark theme, and an admin page for adding, editing and deleting
+              cars. The live demo runs on built-in sample data.
             </p>
             <div class="cat">
-              <span class="pill">Web app · Live</span
-              ><small>kansha04.github.io/Seismic_Core</small>
+              <span class="pill">Dealership site · Live demo</span
+              ><small>kansha04.github.io/EuroSpec</small>
             </div>
           </a>
         </div>
